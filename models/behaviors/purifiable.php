@@ -80,7 +80,7 @@ class PurifiableBehavior extends ModelBehavior {
 		$config = HTMLPurifier_Config::createDefault();
 		foreach ($this->settings[$model->alias]['config'] as $namespace => $values) {
 			foreach ($values as $key => $value) {
-				$config->set("{$namespace}.{$key}" => $value);
+				$config->set("{$namespace}.{$key}", $value);
 			}
 		}
 
