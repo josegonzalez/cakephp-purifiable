@@ -56,6 +56,10 @@ class PurifiableBehavior extends ModelBehavior {
  */
 	function beforeSave(&$model) {
 		foreach($fields as $fieldName) {
+			if (!isset($model->data[$model->alias][$fieldName]) or empty($model->data[$model->alias][$fieldName])) {
+				continue;
+			}
+
 			if ($this->settings[$model->alias]['overwrite']) {
 				$model->data[$model->alias][$fieldName] = $this->clean($model->data[$model->alias][$fieldName]);
 			} else {
