@@ -18,11 +18,19 @@ class PurifiableBehavior extends ModelBehavior {
  * @access public
  * @see Model::$alias
  */
-	var $settings = array(
+	var $_settings = array(
 		'fields' => array(),
 		'overwrite' => false,
 		'affix' => '_clean',
-		'affix_position' => 'suffix');
+		'affix_position' => 'suffix'
+		'config' => array(
+			'HTML' => array(
+				'DefinitionID' => 'purifiable',
+				'DefinitionRev' => 1,
+				'TidyLevel' => 'heavy',
+				'Doctype' => 'XHTML 1.0 Transitional'),
+			'Core' => array(
+				'Encoding' => 'ISO-8859-1')));
 
 /**
  * Initiate Purifiable Behavior
@@ -36,7 +44,7 @@ class PurifiableBehavior extends ModelBehavior {
 		$this->settings[$model->alias] = $this->_settings;
 
 		//merge custom config with default settings
-		$this->settings[$model->alias] = array_merge($this->settings[$model->alias], (array)$config);
+		$this->settings[$model->alias] = array_merge_recursive($this->settings[$model->alias], (array)$config);
 	}
 
 /**
@@ -49,5 +57,20 @@ class PurifiableBehavior extends ModelBehavior {
 	function beforeSave(&$model) {
 		return true;
 	}
+
+	function clean($field) {
+		App::import('Vendor', 'Purifiable.htmlpurifier/htmlpurifier');
+		//the next few lines allow the config settings to be cached 
+		$config = HTMLPurifier_Config::createDefault();
+		foreach ($this->settings[$model->alias]['config'] as $namespace => $values) {
+			foreach ($values as $key => $value) {
+				$config->set("{$namespace}.{$key}" => $value);
+			}
+		}
+
+		$cleaner =& new HTMLPurifier($config);
+		return $cleaner->purify($field);
+	}
+	
 }
 ?>
