@@ -61,20 +61,20 @@ class PurifiableBehavior extends ModelBehavior {
 			}
 
 			if ($this->settings[$model->alias]['overwrite']) {
-				$model->data[$model->alias][$fieldName] = $this->clean($model->data[$model->alias][$fieldName]);
+				$model->data[$model->alias][$fieldName] = $this->clean($model, $model->data[$model->alias][$fieldName]);
 			} else {
 				$affix = $this->settings[$model->alias]['affix'];
 				$affixedFieldName = "{$fieldName}{$affix}";
 				if ($this->settings[$model->alias]['affix_position'] == 'prefix') {
 					$affixedFieldName = "{$affix}{$fieldName}";
 				}
-				$model->data[$model->alias][$affixedFieldName] = $this->clean($model->data[$model->alias][$fieldName]);
+				$model->data[$model->alias][$affixedFieldName] = $this->clean($model, $model->data[$model->alias][$fieldName]);
 			}
 		}
 		return true;
 	}
 
-	function clean($field) {
+	function clean(&$model, $field) {
 		App::import('Vendor', 'Purifiable.htmlpurifier/htmlpurifier');
 		//the next few lines allow the config settings to be cached 
 		$config = HTMLPurifier_Config::createDefault();
