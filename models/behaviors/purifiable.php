@@ -22,7 +22,7 @@ class PurifiableBehavior extends ModelBehavior {
 		'fields' => array(),
 		'overwrite' => false,
 		'affix' => '_clean',
-		'affix_position' => 'suffix'
+		'affix_position' => 'suffix',
 		'config' => array(
 			'HTML' => array(
 				'DefinitionID' => 'purifiable',
