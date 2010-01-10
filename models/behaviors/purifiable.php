@@ -30,7 +30,9 @@ class PurifiableBehavior extends ModelBehavior {
 				'TidyLevel' => 'heavy',
 				'Doctype' => 'XHTML 1.0 Transitional'),
 			'Core' => array(
-				'Encoding' => 'ISO-8859-1')));
+				'Encoding' => 'ISO-8859-1'),
+			'customFilters' => array()
+			));
 
 /**
  * Initiate Purifiable Behavior
@@ -82,6 +84,14 @@ class PurifiableBehavior extends ModelBehavior {
 			foreach ($values as $key => $value) {
 				$config->set("{$namespace}.{$key}", $value);
 			}
+		}
+
+		if($this->settings[$model->alias]['customFilters']) {
+			$filters = array();
+			foreach($this->settings[$model->alias]['customFilters'] as $customFilter) {
+				$filters[] = new $customFilter;
+			}
+			$config->set('Filter.Custom', $filters);
 		}
 
 		$cleaner =& new HTMLPurifier($config);
