@@ -55,7 +55,7 @@ class PurifiableBehavior extends ModelBehavior {
  * @access public
  */
 	function beforeSave(&$model) {
-		foreach($fields as $fieldName) {
+		foreach($this->settings[$model->alias]['fields'] as $fieldName) {
 			if (!isset($model->data[$model->alias][$fieldName]) or empty($model->data[$model->alias][$fieldName])) {
 				continue;
 			}
