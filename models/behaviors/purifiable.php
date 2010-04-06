@@ -28,11 +28,15 @@ class PurifiableBehavior extends ModelBehavior {
 				'DefinitionID' => 'purifiable',
 				'DefinitionRev' => 1,
 				'TidyLevel' => 'heavy',
-				'Doctype' => 'XHTML 1.0 Transitional'),
+				'Doctype' => 'XHTML 1.0 Transitional'
+			),
 			'Core' => array(
-				'Encoding' => 'ISO-8859-1'),
-			'customFilters' => array()
-			));
+				'Encoding' => 'ISO-8859-1'
+			),
+		),
+		'customFilters' => array(
+		)
+	);
 
 /**
  * Initiate Purifiable Behavior
