@@ -81,7 +81,10 @@ class PurifiableBehavior extends ModelBehavior {
 	}
 
 	public function clean(Model $model, $field) {
-		App::import('Vendor', 'htmlpurifier/htmlpurifier');
+		if (!class_exists('HTMLPurifier')) {
+			App::import('Vendor', 'htmlpurifier/htmlpurifier');
+		}
+
 		//the next few lines allow the config settings to be cached 
 		$config = HTMLPurifier_Config::createDefault();
 		foreach ($this->settings[$model->alias]['config'] as $namespace => $values) {
