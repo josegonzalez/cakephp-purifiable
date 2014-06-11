@@ -31,7 +31,11 @@ class PurifiableBehavior extends ModelBehavior {
 				'Doctype' => 'XHTML 1.0 Transitional'
 			),
 			'Core' => array(
-				'Encoding' => 'ISO-8859-1'
+				'Encoding' => 'UTF-8'
+			),
+			'AutoFormat' => array(
+				'RemoveSpansWithoutAttributes' => true,
+				'RemoveEmpty' => true
 			),
 		),
 		'customFilters' => array(
