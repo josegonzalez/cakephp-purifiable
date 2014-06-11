@@ -50,7 +50,7 @@ class PurifiableBehavior extends ModelBehavior {
 		$this->settings[$model->alias] = $this->_settings;
 
 		//merge custom config with default settings
-		$this->settings[$model->alias] = array_merge_recursive($this->settings[$model->alias], (array)$config);
+		$this->settings[$model->alias] = Hash::merge($this->settings[$model->alias], (array)$config);
 	}
 
 /**
