@@ -1,0 +1,32 @@
+
+{
+	"name": "josegonzalez/cakephp-purifiable",
+	"description": "CakePHP plugin to makes your model data so fresh, so clean",
+	"type": "cakephp-plugin",
+	"keywords": [
+		"cakephp",
+		"purifiable",
+		"behavior"
+	],
+	"homepage": "http://github.com/josegonzalez/cakephp-purifiable",
+	"license": "MIT",
+	"authors": [
+		{
+			"name": "Jose Diaz-Gonzalez",
+			"email": "email@josediazgonzalez.com",
+			"homepage": "http://josediazgonzalez.com",
+			"role": "Maintainer"
+		}
+	],
+	"require": {
+		"composer/installers": "*"
+	},
+	"support": {
+		"email": "cakephp+purifiable@josediazgonzalez.com",
+		"issues": "https://github.com/josegonzalez/cakephp-purifiable/issues",
+		"source": "https://github.com/josegonzalez/cakephp-purifiable"
+	},
+	"extra": {
+		"installer-name": "Purifiable"
+	}
+}
