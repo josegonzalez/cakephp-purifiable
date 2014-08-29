@@ -43,12 +43,11 @@ class PurifiableBehavior extends ModelBehavior {
 	);
 
 /**
- * Initiate Purifiable Behavior
+ * Initiate Purifiable behavior
  *
- * @param object $model
- * @param array $config
+ * @param object $model instance of model
+ * @param array $config array of configuration settings.
  * @return void
- * @access public
  */
 	public function setup(Model $model, $config = array()) {
 		$this->settings[$model->alias] = $this->_settings;
@@ -58,15 +57,17 @@ class PurifiableBehavior extends ModelBehavior {
 	}
 
 /**
- * Before save callback
+ * Before save method. Called before all saves
  *
- * @param object $model Model using this behavior
- * @return boolean True if the operation should continue, false if it should abort
- * @access public
+ * Handles purifying data
+ *
+ * @param Model $model Model instance
+ * @param array $options Options passed from Model::save().
+ * @return boolean
  */
-	public function beforeSave(Model $model) {
-		foreach($this->settings[$model->alias]['fields'] as $fieldName) {
-			if (!isset($model->data[$model->alias][$fieldName]) or empty($model->data[$model->alias][$fieldName])) {
+	public function beforeSave(Model $model, $options = array()) {
+		foreach ($this->settings[$model->alias]['fields'] as $fieldName) {
+			if (empty($model->data[$model->alias][$fieldName])) {
 				continue;
 			}
 
@@ -84,7 +85,14 @@ class PurifiableBehavior extends ModelBehavior {
 		return true;
 	}
 
-	public function clean(Model $model, $field) {
+/**
+ * Sanitizes content
+ *
+ * @param Model $model Model instance
+ * @param string $fieldValue value that will be sanitized
+ * @return boolean
+ */
+	public function clean(Model $model, $fieldValue) {
 		if (!class_exists('HTMLPurifier')) {
 			App::import('Vendor', 'htmlpurifier/htmlpurifier');
 		}
@@ -97,16 +105,16 @@ class PurifiableBehavior extends ModelBehavior {
 			}
 		}
 
-		if($this->settings[$model->alias]['customFilters']) {
+		if ($this->settings[$model->alias]['customFilters']) {
 			$filters = array();
-			foreach($this->settings[$model->alias]['customFilters'] as $customFilter) {
+			foreach ($this->settings[$model->alias]['customFilters'] as $customFilter) {
 				$filters[] = new $customFilter;
 			}
 			$config->set('Filter.Custom', $filters);
 		}
 
 		$cleaner = new HTMLPurifier($config);
-		return $cleaner->purify($field);
+		return $cleaner->purify($fieldValue);
 	}
 
 }
