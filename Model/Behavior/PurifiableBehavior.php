@@ -105,7 +105,7 @@ class PurifiableBehavior extends ModelBehavior {
 			$config->set('Filter.Custom', $filters);
 		}
 
-		$cleaner =& new HTMLPurifier($config);
+		$cleaner = new HTMLPurifier($config);
 		return $cleaner->purify($field);
 	}
 	
