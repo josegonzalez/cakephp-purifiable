@@ -19,7 +19,8 @@
 		}
 	],
 	"require": {
-		"composer/installers": "*"
+		"composer/installers": "*",
+		"ezyang/htmlpurifier": "*"
 	},
 	"support": {
 		"email": "cakephp+purifiable@josediazgonzalez.com",
