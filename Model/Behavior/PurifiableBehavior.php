@@ -1,7 +1,7 @@
 <?php
 /**
  * Purifiable Model Behavior
- * 
+ *
  * Scrubs fields clean of sass
  *
  * @package default
@@ -11,7 +11,7 @@ class PurifiableBehavior extends ModelBehavior {
 
 /**
  * Contains configuration settings for use with individual model objects.
- * Individual model settings should be stored as an associative array, 
+ * Individual model settings should be stored as an associative array,
  * keyed off of the model name.
  *
  * @var array
@@ -89,7 +89,7 @@ class PurifiableBehavior extends ModelBehavior {
 			App::import('Vendor', 'htmlpurifier/htmlpurifier');
 		}
 
-		//the next few lines allow the config settings to be cached 
+		//the next few lines allow the config settings to be cached
 		$config = HTMLPurifier_Config::createDefault();
 		foreach ($this->settings[$model->alias]['config'] as $namespace => $values) {
 			foreach ($values as $key => $value) {
@@ -108,6 +108,5 @@ class PurifiableBehavior extends ModelBehavior {
 		$cleaner = new HTMLPurifier($config);
 		return $cleaner->purify($field);
 	}
-	
+
 }
-?>
