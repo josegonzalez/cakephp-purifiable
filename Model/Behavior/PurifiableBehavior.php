@@ -18,7 +18,7 @@ class PurifiableBehavior extends ModelBehavior {
  * @access public
  * @see Model::$alias
  */
-	var $_settings = array(
+	public $_settings = array(
 		'fields' => array(),
 		'overwrite' => false,
 		'affix' => '_clean',
@@ -31,7 +31,11 @@ class PurifiableBehavior extends ModelBehavior {
 				'Doctype' => 'XHTML 1.0 Transitional'
 			),
 			'Core' => array(
-				'Encoding' => 'ISO-8859-1'
+				'Encoding' => 'UTF-8'
+			),
+			'AutoFormat' => array(
+				'RemoveSpansWithoutAttributes' => true,
+				'RemoveEmpty' => true
 			),
 		),
 		'customFilters' => array(
@@ -46,11 +50,11 @@ class PurifiableBehavior extends ModelBehavior {
  * @return void
  * @access public
  */
-	function setup(&$model, $config = array()) {
+	public function setup(Model $model, $config = array()) {
 		$this->settings[$model->alias] = $this->_settings;
 
 		//merge custom config with default settings
-		$this->settings[$model->alias] = array_merge_recursive($this->settings[$model->alias], (array)$config);
+		$this->settings[$model->alias] = Hash::merge($this->settings[$model->alias], (array)$config);
 	}
 
 /**
@@ -60,7 +64,7 @@ class PurifiableBehavior extends ModelBehavior {
  * @return boolean True if the operation should continue, false if it should abort
  * @access public
  */
-	function beforeSave(&$model) {
+	public function beforeSave(Model $model) {
 		foreach($this->settings[$model->alias]['fields'] as $fieldName) {
 			if (!isset($model->data[$model->alias][$fieldName]) or empty($model->data[$model->alias][$fieldName])) {
 				continue;
@@ -80,8 +84,11 @@ class PurifiableBehavior extends ModelBehavior {
 		return true;
 	}
 
-	function clean(&$model, $field) {
-		App::import('Vendor', 'Purifiable.htmlpurifier/htmlpurifier');
+	public function clean(Model $model, $field) {
+		if (!class_exists('HTMLPurifier')) {
+			App::import('Vendor', 'htmlpurifier/htmlpurifier');
+		}
+
 		//the next few lines allow the config settings to be cached 
 		$config = HTMLPurifier_Config::createDefault();
 		foreach ($this->settings[$model->alias]['config'] as $namespace => $values) {
