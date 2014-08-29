@@ -9,13 +9,13 @@ class AllPurifiableTest extends CakeTestCase {
  *
  * @return void
  */
-    public static function suite() {
-        $suite = new CakeTestSuite('All Purifiable test');
+	public static function suite() {
+		$suite = new CakeTestSuite('All Purifiable test');
 
-        $path = CakePlugin::path('Purifiable') . 'Test' . DS . 'Case' . DS;
-        $suite->addTestDirectoryRecursive($path);
+		$path = CakePlugin::path('Purifiable') . 'Test' . DS . 'Case' . DS;
+		$suite->addTestDirectoryRecursive($path);
 
-        return $suite;
-    }
+		return $suite;
+	}
 
 }
