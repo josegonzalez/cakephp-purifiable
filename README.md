@@ -6,6 +6,8 @@ Sanitize model data easily
 
 ## Background
 
+Someone on #cakephp had an issue with PHP timing out. Normally, I’d say it was just bad coding, but it’s probably just a bad practice on their part. The issue they had is with HTML Purifier. I built this behavior to make sanitizing data a bit simpler.
+
 ## Requirements
 
 * CakePHP 2.x
