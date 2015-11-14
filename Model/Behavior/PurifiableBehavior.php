@@ -18,7 +18,7 @@ class PurifiableBehavior extends ModelBehavior {
  * @access public
  * @see Model::$alias
  */
-	public $_settings = array(
+	protected $_settings = array(
 		'fields' => array(),
 		'overwrite' => false,
 		'affix' => '_clean',
@@ -63,7 +63,7 @@ class PurifiableBehavior extends ModelBehavior {
  *
  * @param Model $model Model instance
  * @param array $options Options passed from Model::save().
- * @return boolean
+ * @return bool
  */
 	public function beforeSave(Model $model, $options = array()) {
 		foreach ($this->settings[$model->alias]['fields'] as $fieldName) {
@@ -90,7 +90,7 @@ class PurifiableBehavior extends ModelBehavior {
  *
  * @param Model $model Model instance
  * @param string $fieldValue value that will be sanitized
- * @return boolean
+ * @return bool
  */
 	public function clean(Model $model, $fieldValue) {
 		if (!class_exists('HTMLPurifier')) {
