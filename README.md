@@ -1,4 +1,9 @@
-[![Build Status](https://travis-ci.org/josegonzalez/cakephp-purifiable.png?branch=master)](https://travis-ci.org/josegonzalez/cakephp-purifiable) [![Coverage Status](https://coveralls.io/repos/josegonzalez/cakephp-purifiable/badge.png?branch=master)](https://coveralls.io/r/josegonzalez/cakephp-purifiable?branch=master) [![Total Downloads](https://poser.pugx.org/josegonzalez/cakephp-purifiable/d/total.png)](https://packagist.org/packages/josegonzalez/cakephp-purifiable) [![Latest Stable Version](https://poser.pugx.org/josegonzalez/cakephp-purifiable/v/stable.png)](https://packagist.org/packages/josegonzalez/cakephp-purifiable)
+[![Build Status](https://img.shields.io/travis/josegonzalez/cakephp-purifiable/master.svg?style=flat-square)](https://travis-ci.org/josegonzalez/cakephp-purifiable) 
+[![Coverage Status](https://img.shields.io/coveralls/josegonzalez/cakephp-purifiable.svg?style=flat-square)](https://coveralls.io/r/josegonzalez/cakephp-purifiable?branch=master) 
+[![Total Downloads](https://img.shields.io/packagist/dt/josegonzalez/cakephp-purifiable.svg?style=flat-square)](https://packagist.org/packages/josegonzalez/cakephp-purifiable) 
+[![Latest Stable Version](https://img.shields.io/packagist/v/josegonzalez/cakephp-purifiable.svg?style=flat-square)](https://packagist.org/packages/josegonzalez/cakephp-purifiable) 
+[![Documentation Status](https://readthedocs.org/projects/cakephp-purifiable/badge/?version=latest&style=flat-square)](https://readthedocs.org/projects/cakephp-purifiable/?badge=latest)
+[![Gratipay](https://img.shields.io/gratipay/josegonzalez.svg?style=flat-square)](https://gratipay.com/~josegonzalez/)
 
 # Purifiable
 
